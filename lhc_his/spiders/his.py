@@ -14,7 +14,7 @@ class HisSpider(scrapy.Spider):
         # 开奖日期
         yield Request(url='http://www.kj5588.com/rq/', callback=self.insert_newest, dont_filter=True)
         # 开奖信息
-        yield Request(url='http://www.kj5588.com/history/2019.html', callback=self.parse_detail, dont_filter=True)
+        yield Request(url='http://www.kj5588.com/history/2019.html', callback=self.update_newest, dont_filter=True)
 
     def parse_detail(self, response):
         item_tr = response.css('.infolist')
@@ -59,6 +59,6 @@ class HisSpider(scrapy.Spider):
         yield lhc_item
 
     def update_newest(self, response):
-        x = response.css('.infolist')[0]
+        x = response.css('.infolist')[1]
         yield deal_tr(x)
 
