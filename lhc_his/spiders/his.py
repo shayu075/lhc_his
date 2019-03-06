@@ -59,6 +59,6 @@ class HisSpider(scrapy.Spider):
         yield lhc_item
 
     def update_newest(self, response):
-        x = response.css('.infolist')[1]
+        x = response.css('.infolist')[0]
         yield deal_tr(x)
 
